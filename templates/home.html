@@ -3,67 +3,357 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>الصفحة الرئيسية | أدوات السلامة المهنية</title>
+  <title>الصفحة الرئيسية | سلامتك</title>
   <style>
     body {
       margin: 0;
       font-family: "Tahoma", Arial, sans-serif;
       background-color: #fff;
       color: #000;
+      overflow-x: hidden;
     }
-    main {
+
+    /* ===== الشريط العلوي ===== */
+    header {
+      background-color: #fff;
+      border-bottom: 3px solid #c00000;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
       width: 90%;
-      margin: 30px auto;
-      text-align: center;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-    .hero {
-      background-color: #f9f9f9;
-      border: 2px solid #c00000;
-      padding: 40px 20px;
-      border-radius: 10px;
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .hero h1 {
+
+    .logo-container img {
+      width: 55px;
+      height: 55px;
+      border-radius: 50%;
+      border: 3px solid #c00000;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .logo-container img:hover {
+      transform: rotate(8deg) scale(1.05);
+    }
+
+    .logo-container span {
+      font-size: 22px;
+      font-weight: bold;
+      color: #000;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin-left: 25px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #000;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
       color: #c00000;
-      font-size: 32px;
-      margin-bottom: 15px;
     }
-    .hero p {
-      font-size: 18px;
-      line-height: 1.8;
-      color: #333;
+
+    .auth-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .btn {
-      display: inline-block;
+
+    .auth-buttons a {
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn-login { background-color: #000; color: #fff; }
+    .btn-login:hover { background-color: #333; }
+    .btn-signup { background-color: #c00000; color: #fff; }
+    .btn-signup:hover { background-color: #900000; }
+
+    .welcome { font-weight: bold; color: #000; margin-right: 10px; }
+    .btn-logout {
       background-color: #c00000;
       color: #fff;
-      padding: 10px 25px;
-      margin-top: 20px;
-      border-radius: 5px;
       text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
       font-weight: bold;
       transition: background 0.3s ease;
     }
-    .btn:hover {
-      background-color: #900000;
+    .btn-logout:hover { background-color: #900000; }
+
+    /* ===== البنر بالفيديو ===== */
+    .hero-video {
+      position: relative;
+      width: 100%;
+      height: 75vh;
+      overflow: hidden;
+      border-bottom: 4px solid #c00000;
     }
+
+    .hero-video video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(60%);
+    }
+
+    /* ===== النص المتحرك ===== */
+    .hero-text {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      color: #fff;
+      z-index: 2;
+    }
+
+    .typewriter {
+      font-size: 42px;
+      font-weight: bold;
+      color: #fff;
+      background-color: rgba(192, 0, 0, 0.7);
+      padding: 10px 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 3px solid #fff;
+      width: 22ch;
+      animation: typing 4s steps(22) infinite alternate, blink 0.6s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 22ch; }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent; }
+      50% { border-color: #fff; }
+    }
+
+    /* زر الإخفاء */
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: rgba(192, 0, 0, 0.8);
+      color: #fff;
+      border: none;
+      font-size: 16px;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .close-btn:hover { background: #900000; }
+
+    /* ===== المنتجات ===== */
+    main {
+      width: 95%;
+      margin: 20px auto 60px auto;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #c00000;
+      font-size: 30px;
+      margin-bottom: 25px;
+      font-weight: bold;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: #c00000;
+      border-radius: 2px;
+    }
+
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .product-card {
+      border: 2px solid #c00000;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background: #fff;
+    }
+
+    .product-card:hover {
+      transform: scale(1.04);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    .product-name { font-weight: bold; font-size: 19px; margin-top: 12px; }
+    .price { color: #c00000; font-weight: bold; font-size: 17px; margin-top: 5px; }
+
+    .details-btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 8px 15px;
+      background-color: #c00000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+    .details-btn:hover { background-color: #900000; }
+
+    .btn-browse {
+      display: block;
+      width: fit-content;
+      margin: 50px auto;
+      padding: 14px 40px;
+      background-color: #c00000;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: background 0.3s;
+      font-size: 18px;
+    }
+    .btn-browse:hover { background-color: #900000; }
   </style>
 </head>
 <body>
 
-  {% include 'header.html' %}
+  <!-- ===== الشريط العلوي ===== -->
+  <header>
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="/static/images/e7537a29-7a22-4ac7-a36d-7b3de7176d7d.png" alt="شعار سلامتك">
+        <span>سلامتك | Salamtek</span>
+      </div>
 
+      <nav>
+        <ul id="menu">
+          <li><a href="/">الرئيسية</a></li>
+          <li><a href="/store/">المنتجات</a></li>
+          <li><a href="#">عروض السلامة</a></li>
+          <li><a href="#">تواصل معنا</a></li>
+        </ul>
+      </nav>
+
+      <div class="auth-buttons">
+        {% if user.is_authenticated %}
+          <span class="welcome">مرحبًا، {{ user.username }}</span>
+          <a href="/accounts/logout/" class="btn-logout">تسجيل الخروج</a>
+        {% else %}
+          <a href="/accounts/login/" class="btn-login">تسجيل الدخول</a>
+          <a href="/accounts/signup/" class="btn-signup">إنشاء حساب</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== البنر بالفيديو ===== -->
+  <section class="hero-video">
+    <video autoplay muted loop playsinline>
+      <source src="/static/videos/videoplayback.mp4" type="video/mp4">
+      متصفحك لا يدعم تشغيل الفيديو.
+    </video>
+    <div class="hero-text" id="heroText">
+      <button class="close-btn" onclick="hideText()">×</button>
+      <h1 class="typewriter">🔥 حماية وسلامة في كل خطوة 🔥</h1>
+    </div>
+  </section>
+
+  <!-- ===== المنتجات ===== -->
   <main>
-    <section class="hero">
-      <h1>مرحبًا بكم في متجر أدوات السلامة المهنية</h1>
-      <p>
-        نحن متخصصون في توفير جميع أدوات ومستلزمات السلامة المهنية — 
-        من الخوذ، القفازات، النظارات الواقية، وأجهزة الحماية الحديثة.
-      </p>
-      <a href="#" class="btn">تصفح المنتجات</a>
-    </section>
+    <h2 class="section-title">🧰 أحدث المنتجات</h2>
+
+    {% if products %}
+    <div class="products-container">
+      {% for product in products %}
+        <div class="product-card">
+          {% if product.image %}
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+          {% else %}
+            <img src="/static/default-product.png" alt="صورة المنتج">
+          {% endif %}
+          <div class="product-name">{{ product.name }}</div>
+          <div class="price">{{ product.price }} ر.س</div>
+          <a href="{% url 'store-product-detail' product.id %}" class="details-btn">عرض التفاصيل</a>
+        </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <p style="text-align:center; color:#666;">لا توجد منتجات حالياً.</p>
+    {% endif %}
+
+    <a href="/store/" class="btn-browse">عرض جميع المنتجات</a>
   </main>
 
   {% include 'footer.html' %}
 
+  <script>
+    function hideText() {
+      const hero = document.getElementById("heroText");
+      hero.style.display = "none";
+    }
+  </script>
 </body>
 </html>
+ٍ
