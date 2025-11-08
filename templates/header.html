@@ -10,6 +10,7 @@
       z-index: 1000;
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
+
     .nav-container {
       width: 90%;
       margin: 0 auto;
@@ -17,28 +18,88 @@
       justify-content: space-between;
       align-items: center;
     }
+
     .logo {
       font-size: 24px;
       font-weight: bold;
       color: #000;
     }
+
     nav ul {
       list-style: none;
       display: flex;
       margin: 0;
       padding: 0;
     }
+
     nav ul li {
       margin-left: 25px;
     }
+
     nav ul li a {
       text-decoration: none;
       color: #000;
       font-weight: 500;
       transition: color 0.3s ease;
     }
+
     nav ul li a:hover {
       color: #c00000;
+    }
+
+    /* الأزرار */
+    .auth-buttons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .auth-buttons a {
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .btn-login {
+      background-color: #000;
+      color: #fff;
+    }
+
+    .btn-login:hover {
+      background-color: #333;
+    }
+
+    .btn-signup {
+      background-color: #c00000;
+      color: #fff;
+    }
+
+    .btn-signup:hover {
+      background-color: #900000;
+    }
+
+    /* رسالة الترحيب */
+    .welcome {
+      font-weight: bold;
+      color: #000;
+      margin-right: 10px;
+    }
+
+    /* زر الخروج */
+    .btn-logout {
+      background-color: #c00000;
+      color: #fff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .btn-logout:hover {
+      background-color: #900000;
     }
 
     /* زر البرجر للجوال */
@@ -47,6 +108,7 @@
       flex-direction: column;
       cursor: pointer;
     }
+
     .burger span {
       background: #000;
       height: 3px;
@@ -54,6 +116,7 @@
       margin: 4px 0;
       transition: 0.3s;
     }
+
     @media (max-width: 768px) {
       nav ul {
         display: none;
@@ -66,11 +129,17 @@
         border: 2px solid #c00000;
         padding: 10px;
       }
+
       nav ul.active {
         display: flex;
       }
+
       .burger {
         display: flex;
+      }
+
+      .auth-buttons {
+        display: none; /* إخفاء الأزرار في الجوال */
       }
     }
   </style>
@@ -80,12 +149,23 @@
 
     <nav>
       <ul id="menu">
-        <li><a href="#">الرئيسية</a></li>
-        <li><a href="#">المنتجات</a></li>
+        <li><a href="/">الرئيسية</a></li>
+        <li><a href="/store/">المنتجات</a></li>
         <li><a href="#">عروض السلامة</a></li>
         <li><a href="#">تواصل معنا</a></li>
       </ul>
     </nav>
+
+    <!-- 🔹 منطقة المستخدم -->
+    <div class="auth-buttons">
+      {% if user.is_authenticated %}
+        <span class="welcome">مرحبًا، {{ user.username }}</span>
+        <a href="/accounts/logout/" class="btn-logout">تسجيل الخروج</a>
+      {% else %}
+        <a href="/accounts/login/" class="btn-login">تسجيل الدخول</a>
+        <a href="/accounts/signup/" class="btn-signup">إنشاء حساب</a>
+      {% endif %}
+    </div>
 
     <div class="burger" id="burger">
       <span></span>
