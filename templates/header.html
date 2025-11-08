@@ -20,7 +20,7 @@
       align-items: center;
     }
 
-    /* 🟥 تصميم الشعار والاسم */
+    /* 🟥 الشعار */
     .logo-container {
       display: flex;
       align-items: center;
@@ -46,13 +46,12 @@
       color: #000;
     }
 
-    /* 🔗 قائمة الروابط */
+    /* 🔗 روابط التنقل */
     nav ul {
       list-style: none;
       display: flex;
       margin: 0;
       padding: 0;
-      transition: all 0.3s ease;
     }
 
     nav ul li {
@@ -71,7 +70,7 @@
       transform: scale(1.05);
     }
 
-    /* 👤 الأزرار (تسجيل / إنشاء حساب / خروج) */
+    /* 👤 الأزرار */
     .auth-buttons {
       display: flex;
       align-items: center;
@@ -139,7 +138,6 @@
       transition: 0.3s;
     }
 
-    /* 💡 عند الضغط عليه */
     .burger.active span:nth-child(1) {
       transform: rotate(45deg) translateY(8px);
     }
@@ -150,7 +148,6 @@
       transform: rotate(-45deg) translateY(-8px);
     }
 
-    /* 📱 تصميم الجوال */
     @media (max-width: 768px) {
       nav ul {
         display: none;
@@ -181,19 +178,19 @@
       }
 
       .auth-buttons {
-        display: none; /* إخفاء الأزرار في وضع الجوال */
+        display: none;
       }
     }
   </style>
 
   <div class="nav-container">
-    <!-- 🟥 شعار سلامتك -->
+    <!-- شعار -->
     <div class="logo-container">
       <img src="/static/images/e7537a29-7a22-4ac7-a36d-7b3de7176d7d.png" alt="شعار سلامتك">
       <span>سلامتك | Salamtek</span>
     </div>
 
-    <!-- 🔗 روابط التنقل -->
+    <!-- روابط -->
     <nav>
       <ul id="menu">
         <li><a href="/">🏠 الرئيسية</a></li>
@@ -203,7 +200,7 @@
       </ul>
     </nav>
 
-    <!-- 👤 منطقة المستخدم -->
+    <!-- مستخدم -->
     <div class="auth-buttons">
       {% if user.is_authenticated %}
         <span class="welcome">مرحبًا، {{ user.username }}</span>
@@ -214,7 +211,7 @@
       {% endif %}
     </div>
 
-    <!-- ☰ زر القائمة للجوال -->
+    <!-- زر الجوال -->
     <div class="burger" id="burger">
       <span></span>
       <span></span>

@@ -21,6 +21,12 @@
       border-radius: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       text-align: center;
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -97,6 +103,12 @@
     .contact-info a:hover {
       text-decoration: underline;
     }
+
+    .icon {
+      font-size: 28px;
+      color: #c00000;
+      margin-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -105,7 +117,7 @@
 
   <main>
     <h1>📞 اتصل بنا</h1>
-    <p>يسعدنا تواصلك معنا لأي استفسار أو ملاحظات.</p>
+    <p>يسعدنا تواصلك معنا لأي استفسار أو ملاحظات، فريقنا جاهز لخدمتك.</p>
 
     <form action="#" method="post">
       {% csrf_token %}
