@@ -111,7 +111,7 @@ LOCALE_PATHS = [
 # 🗂️ إعداد الملفات الثابتة (CSS / JS / Images)
 STATIC_URL = '/static/'                      # رابط الوصول إلى الملفات الثابتة
 STATICFILES_DIRS = [BASE_DIR / 'static']     # مجلد ملفات المشروع أثناء التطوير
-STATIC_ROOT = BASE_DIR / 'staticfiles'       # مجلد التجميع النهائي (يُنشأ عند نشر المشروع)
+STATIC_ROOT = BASE_DIR / 'staticfiles'       # مجلد التجميع النهائي (عند تنفيذ collectstatic)
 
 
 # 🖼️ إعداد ملفات الوسائط (الصور / الفيديو / الملفات المرفوعة)
