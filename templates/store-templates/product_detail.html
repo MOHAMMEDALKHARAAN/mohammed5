@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if product %}{{ product.name }}{% else %}تفاصيل المنتج{% endif %}</title>
+  <style>
+    body {
+      font-family: "Tahoma", sans-serif;
+      background-color: #fff;
+      color: #000;
+      margin: 0;
+      padding: 0;
+    }
+
+    .product-container {
+      width: 90%;
+      max-width: 900px;
+      margin: 50px auto;
+      border: 2px solid #c00000;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 30px;
+    }
+
+    .product-image img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 2px solid #c00000;
+    }
+
+    .product-info {
+      flex: 1;
+    }
+
+    .product-info h2 {
+      color: #c00000;
+      margin-top: 0;
+    }
+
+    .price {
+      font-size: 20px;
+      font-weight: bold;
+      margin: 10px 0;
+    }
+
+    .description {
+      margin: 10px 0 20px;
+      line-height: 1.6;
+    }
+
+    .stock {
+      color: #090;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #c00000;
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #900000;
+    }
+
+    .error {
+      text-align: center;
+      color: #c00000;
+      font-weight: bold;
+      margin-top: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  {% if error %}
+    <div class="error">{{ error }}</div>
+  {% else %}
+  <div class="product-container">
+    <div class="product-image">
+      {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+      {% else %}
+        <img src="/static/default-product.png" alt="صورة المنتج">
+      {% endif %}
+    </div>
+
+    <div class="product-info">
+      <h2>{{ product.name }}</h2>
+      <p class="price">السعر: {{ product.price }} ر.س</p>
+      <p class="description">{{ product.description }}</p>
+      <p class="stock">المتوفر: {{ product.stock }} قطعة</p>
+      <a href="/" class="btn">العودة للرئيسية</a>
+    </div>
+  </div>
+  {% endif %}
+
+</body>
+</html>
