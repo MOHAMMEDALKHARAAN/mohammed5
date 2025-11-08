@@ -1,5 +1,6 @@
 from django.urls import path
+from . import views
 
 urlpatterns = [
-    # روابط تطبيق core ستُضاف هنا لاحقًا
+    path('', views.home, name='home'),  # الصفحة الرئيسية
 ]
